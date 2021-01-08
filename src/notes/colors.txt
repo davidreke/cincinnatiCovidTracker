@@ -1,0 +1,11 @@
+Outer Space (dark grey)
+#334040
+
+Vanilla
+#D7C7B4
+
+Gulf Stream (lighter)
+#84BAB2
+
+Breaker Bay (darker)
+#5FA19E
