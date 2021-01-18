@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import {Container} from 'reactstrap'
 import NewCases from './NewCases'
+import Selector from './Selector'
 
 export default class Body extends Component {
+    
     render() {
+
+        
+
         return (
             <div>
                 <Container >
-                    <h2>You are now viewing data for...</h2>
-                    <NewCases />
+                    <Selector location={this.props.location} changeLocation={this.props.changeLocation}/>
+                    
+                    <NewCases location={this.props.location} />
                 </Container>
             </div>
         )

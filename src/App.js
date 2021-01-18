@@ -5,11 +5,22 @@ import './App.css'
 
 
 export default class App extends Component {
+
+  state={
+    location: 'United States'
+    // location: 'Cincinnati MSA'
+  }
+
+  changeLocation = (e) => {
+    this.setState({location: e.target.innerText})
+  }
+
   render() {
+    
     return (
       <div>
         <Header />
-        <Body />
+        <Body location={this.state.location} changeLocation ={this.changeLocation} />
       </div>
     )
   }

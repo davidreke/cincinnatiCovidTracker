@@ -15,3 +15,31 @@ body {
 .jumbotron h1{
   color:#D7C7B4;
 }
+
+h2{
+  text-align: center;
+}
+
+.location{
+  color: #5FA19E;
+}
+
+
+#selector button{
+  margin: .75em;
+}
+
+#dropDown{
+  display: inline-block
+}
+
+button.btn-secondary{
+  background-color: #5FA19E;
+  border-color: #5FA19E;
+}
+
+button.dropdown-item:hover{
+  background-color: #5FA19E;
+  max-width: 100%;
+  display: inline-block;
+}
