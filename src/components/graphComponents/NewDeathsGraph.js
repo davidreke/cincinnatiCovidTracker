@@ -1,21 +1,17 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 import { transition } from "d3-transition";
-import {legendColor} from 'd3-svg-legend'
 
 
-export default class NewCasesGraph extends Component {
+export default class NewDeathsGraph extends Component {
   componentDidUpdate = (prevProps) => {
     if (!prevProps.input.length) {
       this.createGraph(this.props.input);
     } else {
       if (!prevProps.input !== this.props.input) {
-       let caseGraph= d3.select('#cases')
-          
-        console.log(caseGraph)
-
-       caseGraph.selectAll('svg')
-            .remove()
+        d3.select('#deaths')
+        .selectAll("svg")
+        .remove();
 
         this.createGraph(this.props.input);
         // this.updateGraph(this.props.input)
@@ -24,9 +20,8 @@ export default class NewCasesGraph extends Component {
   };
 
   getTransition(duration) {
-    return transition()
-      .duration(duration);
-}
+    return transition().duration(duration);
+  }
 
   // componentDidMount = () => {
   //     console.log(this.props.input)
@@ -36,23 +31,21 @@ export default class NewCasesGraph extends Component {
 
   // }
 
-  handleMouseOver = (event, d) =>{
-      d3.select(event.currentTarget)
-        .transition()
-        .duration(200)
-        .attr("fill", "#334040");
-  }
+  handleMouseOver = (event, d) => {
+    d3.select(event.currentTarget)
+      .transition()
+      .duration(200)
+      .attr("fill", "#334040");
+  };
 
-    handleMouseOut = (event, d) => {
-  d3.select(event.currentTarget)
-    .transition()
-    .duration(300)
-    .attr("fill", "#5FA19E");
-};
-
+  handleMouseOut = (event, d) => {
+    d3.select(event.currentTarget)
+      .transition()
+      .duration(300)
+      .attr("fill", "#5FA19E");
+  };
 
   createGraph(data) {
-    
     // console.log('CreateGraph Data: ', data);
 
     // tween
@@ -72,8 +65,7 @@ export default class NewCasesGraph extends Component {
 
     const margin = { top: 20, right: 20, bottom: 100, left: 100 };
 
-    const svg = d3
-      .select("#cases")
+    const svg = d3.select("#deaths")
       .append("svg")
       .attr("width", dimensions.width)
       .attr("height", dimensions.height);
@@ -87,7 +79,7 @@ export default class NewCasesGraph extends Component {
       .attr("width", graphWidth)
       .attr("height", graphHeight)
       .attr("transform", `translate(${margin.left}, ${margin.top})`)
-      .attr("class", "graph");
+      .attr("class", "deathGraph");
 
     // console.log(graph);
     // line path element
@@ -105,7 +97,7 @@ export default class NewCasesGraph extends Component {
       .attr("text-anchor", "end")
       .attr("fill", "grey");
 
-    const yAxisGroup = graph.append("g").attr("class", "yAxisGroup");
+    const yAxisGroup = graph.append("g").attr("class", "deathyAxisGroup");
 
     // d3 line generator
     const line = d3
@@ -134,7 +126,7 @@ export default class NewCasesGraph extends Component {
     const yAxis = d3
       .axisLeft(y)
       .ticks(4)
-      .tickFormat((d) => `${d.toLocaleString()} cases`);
+      .tickFormat((d) => `${d.toLocaleString()} deaths`);
 
     const t = this.getTransition(750);
 
@@ -185,14 +177,15 @@ export default class NewCasesGraph extends Component {
       .attr("height", (d) => {
         // console.log(graphHeight - y(d[1]))
         return graphHeight - y(d[1]);
-      })
+      });
 
-      //   add mouseover and mousout
-      graph.selectAll('rect')
+    //   add mouseover and mousout
+    graph
+      .selectAll("rect")
       .on("mouseover", (event, d) => {
         let content = `<div class="tooltip-label">${
           d[0].getMonth() + 1
-        }/${d[0].getDate()}/${d[0].getFullYear()}: ${d[1]} New cases</div>`;
+        }/${d[0].getDate()}/${d[0].getFullYear()}: ${d[1]} New deaths</div>`;
         tip.html(content).style("visibility", "visible");
         this.handleMouseOver(event, d);
       })
@@ -208,7 +201,6 @@ export default class NewCasesGraph extends Component {
     xAxisGroup.call(xAxis);
     yAxisGroup.call(yAxis);
 
-
     // add tips
     const tip = d3
       .select("body")
@@ -220,33 +212,33 @@ export default class NewCasesGraph extends Component {
       .style("top", 0)
       .style("visibility", "hidden");
 
-        // legend variables
-        var legendRectSize = 10;
-        var legendSpacing = 4 ;
+    // legend variables
+    var legendRectSize = 10;
+    var legendSpacing = 4;
 
-     var legend = graph.append('g')
-      .attr('class', 'legend')
-      .attr('transform', 'translate(10, 10)')
+    var legend = graph
+      .append("g")
+      .attr("class", "legend")
+      .attr("transform", "translate(10, 10)");
 
-      legend
-        .append("rect")
-        .attr("width", legendRectSize)
-        .attr("height", legendRectSize/5)
-        .style("fill", "#334040")
-        .style("stroke", "#334040");
+    legend
+      .append("rect")
+      .attr("width", legendRectSize)
+      .attr("height", legendRectSize / 5)
+      .style("fill", "#334040")
+      .style("stroke", "#334040");
 
-        legend
-          .append("text")
-          .attr("x", legendRectSize + legendSpacing)
-          .attr("y", legendRectSize - legendSpacing)
-          .text('seven day moving average');
+    legend
+      .append("text")
+      .attr("x", legendRectSize + legendSpacing)
+      .attr("y", legendRectSize - legendSpacing)
+      .text("seven day moving average");
   }
-
 
   render() {
     return (
       <div>
-        <div id="cases"></div>
+        <div id="deaths"></div>
       </div>
     );
   }

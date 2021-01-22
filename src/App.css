@@ -4,7 +4,7 @@ body {
 
 .container{
   background-color: white;
-  height: 100%;
+  
 }
 
 .jumbotron{
@@ -42,4 +42,21 @@ button.dropdown-item:hover{
   background-color: #5FA19E;
   max-width: 100%;
   display: inline-block;
+}
+
+h1{
+  font-family: 'Vesper Libre', serif;
+}
+
+h2, button.dropdown-toggle{
+  font-family: 'Work Sans', sans-serif;
+}
+
+#footer p{
+  font-size: 25px;
+  color:#D7C7B4;
+}
+
+#footer p a {
+  color:#5FA19E;
 }

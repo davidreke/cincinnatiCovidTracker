@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-import NewCasesGraph from "./graphComponents/NewCasesGraph";
+import NewDeathsGraph from "./graphComponents/NewDeathsGraph";
 import {
   unitedStates,
   states,
   counties,
   cincyMSA,
-} from "../functions/fetches.js";
+} from "../functions/fetchDeaths";
 
-export default class NewCases extends Component {
+export default class NewDeaths extends Component {
   state = { data: [] };
 
   componentDidMount = () => {
@@ -19,10 +19,9 @@ export default class NewCases extends Component {
     if (prevProps.location !== this.props.location) {
       this.fetchData(this.props.location);
     }
-  };
+  }
 
-  // all ohio counties
-  // https://disease.sh/v3/covid-19/historical/usacounties/ohio?lastdays=all
+
 
   fetchData(location) {
     var data = [];
@@ -120,9 +119,10 @@ export default class NewCases extends Component {
         break;
       case "Cincinnati MSA":
         cincyMSA().then((res) => {
-          this.setState({data: res})
-        })
-      break
+          // console.log("response from fetch function", res);
+          this.setState({ data: res });
+        });
+        break;
 
       default:
         break;
@@ -140,9 +140,9 @@ export default class NewCases extends Component {
     return (
       <div>
         <h2>
-          New Cases in <span className="location">{locationView}</span>
+          New Deaths in <span className="location">{locationView}</span>
         </h2>
-        <NewCasesGraph input={this.state.data} />
+        <NewDeathsGraph input={this.state.data} />
       </div>
     );
   }
