@@ -38,15 +38,11 @@ export default class NewCasesGraph extends Component {
 
   handleMouseOver = (event, d) =>{
       d3.select(event.currentTarget)
-        .transition()
-        .duration(200)
         .attr("fill", "#334040");
   }
 
     handleMouseOut = (event, d) => {
   d3.select(event.currentTarget)
-    .transition()
-    .duration(300)
     .attr("fill", "#5FA19E");
 };
 
