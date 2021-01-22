@@ -81,7 +81,7 @@ export const counties = async (state, county) => {
     //   console.log("response: ", res.data);
 
       let filteredResponse = res.data.filter((i) => {
-        return i.county == county;
+        return i.county === county;
       });
 
       filteredResponse = filteredResponse[0].timeline.cases;
@@ -128,13 +128,13 @@ export const cincyMSA = async() =>{
   return axios.get(
     `https://disease.sh/v3/covid-19/historical/usacounties/ohio?lastdays=all`
   ).then( res =>{
-    var hamiltonCounty = res.data.find(i => i.county == 'hamilton').timeline.cases
-    var butlerCounty = res.data.find((i) => i.county == "butler").timeline.cases;
-    var brownCounty = res.data.find((i) => i.county == "brown").timeline
+    var hamiltonCounty = res.data.find(i => i.county === 'hamilton').timeline.cases
+    var butlerCounty = res.data.find((i) => i.county === "butler").timeline.cases;
+    var brownCounty = res.data.find((i) => i.county === "brown").timeline
       .cases;
-    var clermontCounty = res.data.find((i) => i.county == "clermont").timeline
+    var clermontCounty = res.data.find((i) => i.county === "clermont").timeline
       .cases;
-   var warrenCounty = res.data.find((i) => i.county == "warren").timeline.cases;   
+   var warrenCounty = res.data.find((i) => i.county === "warren").timeline.cases;   
 
    console.log('butler county: ', butlerCounty)
     console.log('hamilton before: ', hamiltonCounty)
@@ -147,17 +147,17 @@ export const cincyMSA = async() =>{
     return axios.get(
       `https://disease.sh/v3/covid-19/historical/usacounties/kentucky?lastdays=all`
     ).then( res =>{
-      var booneCounty = res.data.find((i) => i.county == "boone").timeline.cases;
-      var brackenCounty = res.data.find((i) => i.county == "bracken").timeline.cases;
-      var campbellCounty = res.data.find((i) => i.county == "campbell").timeline
+      var booneCounty = res.data.find((i) => i.county === "boone").timeline.cases;
+      var brackenCounty = res.data.find((i) => i.county === "bracken").timeline.cases;
+      var campbellCounty = res.data.find((i) => i.county === "campbell").timeline
         .cases;
-      var gallatinCounty = res.data.find((i) => i.county == "gallatin").timeline
+      var gallatinCounty = res.data.find((i) => i.county === "gallatin").timeline
         .cases;
-      var grantCounty = res.data.find((i) => i.county == "grant").timeline
+      var grantCounty = res.data.find((i) => i.county === "grant").timeline
         .cases;
-      var kentonCounty = res.data.find((i) => i.county == "kenton").timeline
+      var kentonCounty = res.data.find((i) => i.county === "kenton").timeline
         .cases;
-      var pendletonCounty = res.data.find((i) => i.county == "pendleton").timeline
+      var pendletonCounty = res.data.find((i) => i.county === "pendleton").timeline
         .cases;  
         
       for (let i in finalCovidObject) {
@@ -181,11 +181,11 @@ export const cincyMSA = async() =>{
           "https://disease.sh/v3/covid-19/historical/usacounties/indiana?lastdays=all"
         )
         .then((res) => {
-          var brownCounty = res.data.find((i) => i.county == "brown").timeline
+          var brownCounty = res.data.find((i) => i.county === "brown").timeline
             .cases;
-          var franklinCounty = res.data.find((i) => i.county == "franklin").timeline
+          var franklinCounty = res.data.find((i) => i.county === "franklin").timeline
             .cases;
-          var ohioCounty = res.data.find((i) => i.county == "ohio").timeline
+          var ohioCounty = res.data.find((i) => i.county === "ohio").timeline
             .cases;  
 
           for(let i in finalCovidObject){
@@ -237,7 +237,7 @@ export const cincyMSA = async() =>{
 }
 
 function removeFirstZeros(array) {
-  if (array[0][1] == 0) {
+  if (array[0][1] === 0) {
     array.shift();
     return removeFirstZeros(array);
   } else {
