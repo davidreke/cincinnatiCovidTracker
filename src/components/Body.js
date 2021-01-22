@@ -13,7 +13,7 @@ export default class Body extends Component {
 
         return (
           <div>
-            <Container>
+            <Container id='container'>
               <Selector
                 location={this.props.location}
                 changeLocation={this.props.changeLocation}

@@ -60,10 +60,13 @@ export default class NewCasesGraph extends Component {
       };
     };
 
+    
     // dimensions
+    const container = document.getElementById("container");
+
     const dimensions = {
       height: 500,
-      width: 1000,
+      width: container.clientWidth * .9,
     };
 
     const margin = { top: 20, right: 20, bottom: 100, left: 100 };
