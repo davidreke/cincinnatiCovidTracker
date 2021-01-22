@@ -189,7 +189,7 @@ export const cincyMSA = async() =>{
             .cases;  
 
           for(let i in finalCovidObject){
-            finalCovidObject[i] = finalCovidObject[i]+ brownCounty[i] + franklinCounty[i] + ohioCounty [i]
+            finalCovidObject[i] = finalCovidObject[i]+ brownCounty[i] + franklinCounty[i] + ohioCounty[i]
           }
 
           console.log('final covid array after indina', finalCovidObject)
