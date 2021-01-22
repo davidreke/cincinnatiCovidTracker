@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 import { transition } from "d3-transition";
-import {legendColor} from 'd3-svg-legend'
+
 
 
 export default class NewCasesGraph extends Component {
