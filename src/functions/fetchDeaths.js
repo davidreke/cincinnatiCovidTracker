@@ -81,7 +81,7 @@ export const counties = async (state, county) => {
       //   console.log("response: ", res.data);
 
       let filteredResponse = res.data.filter((i) => {
-        return i.county == county;
+        return i.county === county;
       });
 
       filteredResponse = filteredResponse[0].timeline.deaths;
@@ -101,7 +101,7 @@ export const counties = async (state, county) => {
       }
 
       // calculate seven day average
-      for (let j = 0; j < covidArray.length; j++) {
+      for(let j = 0; j < covidArray.length; j++) {
         covidArray[j][0] = new Date(covidArray[j][0]);
 
         let one = covidArray[j - 6] === undefined ? 0 : covidArray[j - 6][1];
