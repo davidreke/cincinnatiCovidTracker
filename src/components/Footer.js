@@ -1,11 +1,9 @@
 import React from 'react'
-import {Jumbotron} from 'reactstrap'
+
 
 export default function footer() {
     return (
-      <div>
-        <div id="footer">
-          <Jumbotron>
+          <div id='footer'>
             <p>
               I am looking for a development position in the Cincinnati area.
               <span> </span>
@@ -18,8 +16,6 @@ export default function footer() {
                 My Other Projects
               </a>
             </p>
-          </Jumbotron>
-        </div>
-      </div>
+          </div>
     );
 }

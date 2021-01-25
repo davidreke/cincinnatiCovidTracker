@@ -1,32 +1,61 @@
-@media screen and (min-width: 301px){
+@media screen and (min-width: 551px){
   body {
   background-image: url(./imgs/cincySkyline.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   }
-}
 
-.container{
-  background-color: white;
-  min-height: 100vh;
-  
-}
-
-@media screen and(max-width: 300px){
-  .container{
-    width: 100vw;
+  #header, #footer{
+    height: 7rem;
   }
 }
 
-.jumbotron{
+#container{
+  background-color: white;
+  min-height: 100vh;
+  margin: 0 auto;
+  
+}
+
+@media screen and(max-width: 550px){
+  .container{
+    width: 100vw;
+  }
+
+  #header h1{
+    font-size:10px !important;
+  }
+
+  #footer p, span{
+    font-size: 6px;
+  }
+
+  #header, #footer{
+    height: auto !important;
+  }
+
+ 
+}
+
+#header, #footer{
   background-color:#334040 ;
   text-align: center;
   width: 100vw;
+  margin-bottom:0;
+  text-align: center;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0;
+
+  
 }
 
-.jumbotron h1{
+#header h1{
   color:#D7C7B4;
   margin: auto auto;
+  
 }
 
 h2{
@@ -53,8 +82,7 @@ button.btn-secondary{
 
 button.dropdown-item:hover{
   background-color: #5FA19E;
-  
-  
+
 }
 
 h1{
@@ -73,3 +101,9 @@ h2, button.dropdown-toggle{
 #footer p a {
   color:#5FA19E;
 }
+
+#footer, #header{
+  min-height: fit-content;
+  padding: 1em;
+}
+
