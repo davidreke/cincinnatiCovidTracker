@@ -132,15 +132,15 @@ export const cincyMSA = async () => {
     )
     .then((res) => {
       var hamiltonCounty = res.data.find((i) => i.county === "hamilton")
-        .timeline.cases;
+        .timeline.deaths;
       var butlerCounty = res.data.find((i) => i.county === "butler").timeline
-        .cases;
+        .deaths;
       var brownCounty = res.data.find((i) => i.county === "brown").timeline
-        .cases;
+        .deaths;
       var clermontCounty = res.data.find((i) => i.county === "clermont")
-        .timeline.cases;
+        .timeline.deaths;
       var warrenCounty = res.data.find((i) => i.county === "warren").timeline
-        .cases;
+        .deaths;
 
       for (let i in hamiltonCounty) {
         hamiltonCounty[i] =
@@ -149,9 +149,9 @@ export const cincyMSA = async () => {
           brownCounty[i] +
           clermontCounty[i] +
           warrenCounty[i];
-        var finalCovidObject = hamiltonCounty;
+
       }
-      return finalCovidObject;
+      return hamiltonCounty;
     });
 
   let kentucky = axios
@@ -160,19 +160,19 @@ export const cincyMSA = async () => {
     )
     .then((res) => {
       var booneCounty = res.data.find((i) => i.county === "boone").timeline
-        .cases;
+        .deaths;
       var brackenCounty = res.data.find((i) => i.county === "bracken").timeline
-        .cases;
+        .deaths;
       var campbellCounty = res.data.find((i) => i.county === "campbell")
-        .timeline.cases;
+        .timeline.deaths;
       var gallatinCounty = res.data.find((i) => i.county === "gallatin")
-        .timeline.cases;
+        .timeline.deaths;
       var grantCounty = res.data.find((i) => i.county === "grant").timeline
-        .cases;
+        .deaths;
       var kentonCounty = res.data.find((i) => i.county === "kenton").timeline
-        .cases;
+        .deaths;
       var pendletonCounty = res.data.find((i) => i.county === "pendleton")
-        .timeline.cases;
+        .timeline.deaths;
 
       for (let i in booneCounty) {
         booneCounty[i] =
@@ -195,10 +195,10 @@ export const cincyMSA = async () => {
     )
     .then((res) => {
       let brownCounty = res.data.find((i) => i.county === "brown").timeline
-        .cases;
+        .deaths;
       let franklinCounty = res.data.find((i) => i.county === "franklin")
-        .timeline.cases;
-      var ohioCounty = res.data.find((i) => i.county === "ohio").timeline.cases;
+        .timeline.deaths;
+      var ohioCounty = res.data.find((i) => i.county === "ohio").timeline.deaths;
 
       for (let i in brownCounty) {
         brownCounty[i] =
