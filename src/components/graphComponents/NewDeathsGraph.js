@@ -46,14 +46,13 @@ export default class NewDeathsGraph extends Component {
 
     // tween
     const widthTween = (d) => {
-      let i = d3.interpolate(0, graphHeight / data.length);
+      let i = d3.interpolate(0, graphWidth / data.length);
 
       return function (t) {
         return i(t);
       };
     };
 
-    
     // dimensions
     const container = document.getElementById("container");
 
@@ -64,7 +63,8 @@ export default class NewDeathsGraph extends Component {
 
     const margin = { top: 20, right: 20, bottom: 100, left: 100 };
 
-    const svg = d3.select("#deaths")
+    const svg = d3
+      .select("#deaths")
       .append("svg")
       .attr("width", dimensions.width)
       .attr("height", dimensions.height);
@@ -79,10 +79,6 @@ export default class NewDeathsGraph extends Component {
       .attr("height", graphHeight)
       .attr("transform", `translate(${margin.left}, ${margin.top})`)
       .attr("class", "deathGraph");
-
-    // console.log(graph);
-    // line path element
-    const path = graph.append("path");
 
     const xAxisGroup = graph
       .append("g")
@@ -140,14 +136,6 @@ export default class NewDeathsGraph extends Component {
     y.domain([0, d3.max(data, (d) => d[1])]);
     x.domain([data[0][0], data[data.length - 1][0]]);
 
-    // update path data
-    path
-      .data([data])
-      .attr("fill", "none")
-      .attr("stroke", "#334040")
-      .attr("stroke-width", "2")
-      .attr("d", line);
-
     // update current shapes in the dom
     rects
       .attr("width", graphWidth / data.length)
@@ -195,6 +183,17 @@ export default class NewDeathsGraph extends Component {
       .on("mousemove", (event, d) => {
         tip.style("transform", `translate(${event.pageX}px,${event.pageY}px)`);
       });
+
+    // line path element
+    const path = graph.append("path");
+
+    // update path data
+    path
+      .data([data])
+      .attr("fill", "none")
+      .attr("stroke", "#334040")
+      .attr("stroke-width", "2")
+      .attr("d", line);
 
     // call axae
     xAxisGroup.call(xAxis);

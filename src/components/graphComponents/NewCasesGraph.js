@@ -48,25 +48,23 @@ export default class NewCasesGraph extends Component {
 
 
   createGraph(data) {
-    
     // console.log('CreateGraph Data: ', data);
 
     // tween
     const widthTween = (d) => {
-      let i = d3.interpolate(0, graphHeight / data.length);
+      let i = d3.interpolate(0, graphWidth / data.length);
 
       return function (t) {
         return i(t);
       };
     };
 
-    
     // dimensions
     const container = document.getElementById("container");
 
     const dimensions = {
       height: 500,
-      width: container.clientWidth * .9,
+      width: container.clientWidth * 0.9,
     };
 
     const margin = { top: 20, right: 20, bottom: 100, left: 100 };
@@ -87,10 +85,6 @@ export default class NewCasesGraph extends Component {
       .attr("height", graphHeight)
       .attr("transform", `translate(${margin.left}, ${margin.top})`)
       .attr("class", "graph");
-
-    // console.log(graph);
-    // line path element
-    const path = graph.append("path");
 
     const xAxisGroup = graph
       .append("g")
@@ -148,14 +142,6 @@ export default class NewCasesGraph extends Component {
     y.domain([0, d3.max(data, (d) => d[1])]);
     x.domain([data[0][0], data[data.length - 1][0]]);
 
-    // update path data
-    path
-      .data([data])
-      .attr("fill", "none")
-      .attr("stroke", "#334040")
-      .attr("stroke-width", "2")
-      .attr("d", line);
-
     // update current shapes in the dom
     rects
       .attr("width", graphWidth / data.length)
@@ -184,10 +170,22 @@ export default class NewCasesGraph extends Component {
       .attr("height", (d) => {
         // console.log(graphHeight - y(d[1]))
         return graphHeight - y(d[1]);
-      })
+      });
 
-      //   add mouseover and mousout
-      graph.selectAll('rect')
+    // line path element
+    const path = graph.append("path");
+
+    // update path data
+    path
+      .data([data])
+      .attr("fill", "none")
+      .attr("stroke", "#334040")
+      .attr("stroke-width", "2")
+      .attr("d", line);
+
+    //   add mouseover and mousout
+    graph
+      .selectAll("rect")
       .on("mouseover", (event, d) => {
         let content = `<div class="tooltip-label">${
           d[0].getMonth() + 1
@@ -207,7 +205,6 @@ export default class NewCasesGraph extends Component {
     xAxisGroup.call(xAxis);
     yAxisGroup.call(yAxis);
 
-
     // add tips
     const tip = d3
       .select("body")
@@ -219,26 +216,27 @@ export default class NewCasesGraph extends Component {
       .style("top", 0)
       .style("visibility", "hidden");
 
-        // legend variables
-        var legendRectSize = 10;
-        var legendSpacing = 4 ;
+    // legend variables
+    var legendRectSize = 10;
+    var legendSpacing = 4;
 
-     var legend = graph.append('g')
-      .attr('class', 'legend')
-      .attr('transform', 'translate(10, 10)')
+    var legend = graph
+      .append("g")
+      .attr("class", "legend")
+      .attr("transform", "translate(10, 10)");
 
-      legend
-        .append("rect")
-        .attr("width", legendRectSize)
-        .attr("height", legendRectSize/5)
-        .style("fill", "#334040")
-        .style("stroke", "#334040");
+    legend
+      .append("rect")
+      .attr("width", legendRectSize)
+      .attr("height", legendRectSize / 5)
+      .style("fill", "#334040")
+      .style("stroke", "#334040");
 
-        legend
-          .append("text")
-          .attr("x", legendRectSize + legendSpacing)
-          .attr("y", legendRectSize - legendSpacing)
-          .text('seven day moving average');
+    legend
+      .append("text")
+      .attr("x", legendRectSize + legendSpacing)
+      .attr("y", legendRectSize - legendSpacing)
+      .text("seven day moving average");
   }
 
 
