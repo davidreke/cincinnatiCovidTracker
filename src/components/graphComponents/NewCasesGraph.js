@@ -28,13 +28,7 @@ export default class NewCasesGraph extends Component {
       .duration(duration);
 }
 
-  // componentDidMount = () => {
-  //     console.log(this.props.input)
-  //     if(this.props.input.length > 0){
-  //         this.createGraph(this.props.input)
-  //     }
 
-  // }
 
   handleMouseOver = (event, d) =>{
       d3.select(event.currentTarget)
@@ -189,7 +183,7 @@ export default class NewCasesGraph extends Component {
       .on("mouseover", (event, d) => {
         let content = `<div class="tooltip-label">${
           d[0].getMonth() + 1
-        }/${d[0].getDate()}/${d[0].getFullYear()}: ${d[1]} New cases</div>`;
+        }/${d[0].getDate()}/${d[0].getFullYear()}: ${d[1]} New cases<br/>Seven Day Avg: ${d[2]}</div>`;
         tip.html(content).style("visibility", "visible");
         this.handleMouseOver(event, d);
       })

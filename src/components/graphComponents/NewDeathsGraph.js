@@ -172,7 +172,7 @@ export default class NewDeathsGraph extends Component {
       .on("mouseover", (event, d) => {
         let content = `<div class="tooltip-label">${
           d[0].getMonth() + 1
-        }/${d[0].getDate()}/${d[0].getFullYear()}: ${d[1]} New deaths</div>`;
+        }/${d[0].getDate()}/${d[0].getFullYear()}: ${d[1]} New deaths<br/>Seven Day Avg: ${d[2]}</div>`;
         tip.html(content).style("visibility", "visible");
         this.handleMouseOver(event, d);
       })
