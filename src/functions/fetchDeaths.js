@@ -81,7 +81,7 @@ export const counties = async (state, county) => {
       //   console.log("response: ", res.data);
 
       let filteredResponse = res.data.filter((i) => {
-        return i.county == county;
+        return i.county === county;
       });
 
       filteredResponse = filteredResponse[0].timeline.deaths;
@@ -101,7 +101,7 @@ export const counties = async (state, county) => {
       }
 
       // calculate seven day average
-      for (let j = 0; j < covidArray.length; j++) {
+      for(let j = 0; j < covidArray.length; j++) {
         covidArray[j][0] = new Date(covidArray[j][0]);
 
         let one = covidArray[j - 6] === undefined ? 0 : covidArray[j - 6][1];
@@ -124,26 +124,24 @@ export const counties = async (state, county) => {
     .catch((err) => console.log(err));
 };
 
+
 export const cincyMSA = async () => {
-  return axios
+  let ohio = axios
     .get(
       `https://disease.sh/v3/covid-19/historical/usacounties/ohio?lastdays=all`
     )
     .then((res) => {
-      var hamiltonCounty = res.data.find((i) => i.county == "hamilton").timeline
+      var hamiltonCounty = res.data.find((i) => i.county === "hamilton")
+        .timeline.deaths;
+      var butlerCounty = res.data.find((i) => i.county === "butler").timeline
         .deaths;
-      var butlerCounty = res.data.find((i) => i.county == "butler").timeline
+      var brownCounty = res.data.find((i) => i.county === "brown").timeline
         .deaths;
-      var brownCounty = res.data.find((i) => i.county == "brown").timeline
-        .deaths;
-      var clermontCounty = res.data.find((i) => i.county == "clermont").timeline
-        .deaths;
-      var warrenCounty = res.data.find((i) => i.county == "warren").timeline
+      var clermontCounty = res.data.find((i) => i.county === "clermont")
+        .timeline.deaths;
+      var warrenCounty = res.data.find((i) => i.county === "warren").timeline
         .deaths;
 
-      console.log("butler county: ", butlerCounty);
-      console.log("hamilton before: ", hamiltonCounty);
-      console.log(butlerCounty["1/1/21"]);
       for (let i in hamiltonCounty) {
         hamiltonCounty[i] =
           hamiltonCounty[i] +
@@ -151,109 +149,121 @@ export const cincyMSA = async () => {
           brownCounty[i] +
           clermontCounty[i] +
           warrenCounty[i];
-        var finalCovidObject = hamiltonCounty;
+
       }
-      console.log("final after ohio: ", finalCovidObject);
-      return axios
-        .get(
-          `https://disease.sh/v3/covid-19/historical/usacounties/kentucky?lastdays=all`
-        )
-        .then((res) => {
-          var booneCounty = res.data.find((i) => i.county == "boone").timeline
-            .deaths;
-          var brackenCounty = res.data.find((i) => i.county == "bracken")
-            .timeline.deaths;
-          var campbellCounty = res.data.find((i) => i.county == "campbell")
-            .timeline.deaths;
-          var gallatinCounty = res.data.find((i) => i.county == "gallatin")
-            .timeline.deaths;
-          var grantCounty = res.data.find((i) => i.county == "grant").timeline
-            .deaths;
-          var kentonCounty = res.data.find((i) => i.county == "kenton").timeline
-            .deaths;
-          var pendletonCounty = res.data.find((i) => i.county == "pendleton")
-            .timeline.deaths;
+      return hamiltonCounty;
+    });
 
-          for (let i in finalCovidObject) {
-            // console.log("before addition", finalCovidObject[i], booneCounty[i]);
-            finalCovidObject[i] =
-              finalCovidObject[i] +
-              booneCounty[i] +
-              brackenCounty[i] +
-              campbellCounty[i] +
-              gallatinCounty[i] +
-              grantCounty[i] +
-              kentonCounty[i] +
-              pendletonCounty[i];
-            
-          }
+  let kentucky = axios
+    .get(
+      `https://disease.sh/v3/covid-19/historical/usacounties/kentucky?lastdays=all`
+    )
+    .then((res) => {
+      var booneCounty = res.data.find((i) => i.county === "boone").timeline
+        .deaths;
+      var brackenCounty = res.data.find((i) => i.county === "bracken").timeline
+        .deaths;
+      var campbellCounty = res.data.find((i) => i.county === "campbell")
+        .timeline.deaths;
+      var gallatinCounty = res.data.find((i) => i.county === "gallatin")
+        .timeline.deaths;
+      var grantCounty = res.data.find((i) => i.county === "grant").timeline
+        .deaths;
+      var kentonCounty = res.data.find((i) => i.county === "kenton").timeline
+        .deaths;
+      var pendletonCounty = res.data.find((i) => i.county === "pendleton")
+        .timeline.deaths;
 
-          
+      for (let i in booneCounty) {
+        booneCounty[i] =
+          booneCounty[i] +
+          booneCounty[i] +
+          brackenCounty[i] +
+          campbellCounty[i] +
+          gallatinCounty[i] +
+          grantCounty[i] +
+          kentonCounty[i] +
+          pendletonCounty[i];
+      }
 
-          return axios
-            .get(
-              "https://disease.sh/v3/covid-19/historical/usacounties/indiana?lastdays=all"
-            )
-            .then((res) => {
-              var brownCounty = res.data.find((i) => i.county == "brown")
-                .timeline.deaths;
-              var franklinCounty = res.data.find((i) => i.county == "franklin")
-                .timeline.deaths;
-              var ohioCounty = res.data.find((i) => i.county == "ohio").timeline
-                .deaths;
+      return booneCounty;
+    });
 
-              for (let i in finalCovidObject) {
-                finalCovidObject[i] =
-                  finalCovidObject[i] +
-                  brownCounty[i] +
-                  franklinCounty[i] +
-                  ohioCounty[i];
-              }
+  let indiana = axios
+    .get(
+      "https://disease.sh/v3/covid-19/historical/usacounties/indiana?lastdays=all"
+    )
+    .then((res) => {
+      let brownCounty = res.data.find((i) => i.county === "brown").timeline
+        .deaths;
+      let franklinCounty = res.data.find((i) => i.county === "franklin")
+        .timeline.deaths;
+      var ohioCounty = res.data.find((i) => i.county === "ohio").timeline.deaths;
 
-              // console.log("final covid array after indina", finalCovidObject);
-              let starterArray = Object.entries(finalCovidObject);
+      for (let i in brownCounty) {
+        brownCounty[i] =
+          brownCounty[i] + brownCounty[i] + franklinCounty[i] + ohioCounty[i];
+      }
 
-              let covidArray = [];
-              for (let i = 0; i < starterArray.length; i++) {
-                let date = new Date(starterArray[i][0]);
-                let currentDay = starterArray[i][1];
-                let previousDay = starterArray[i - 1]
-                  ? starterArray[i - 1][1]
-                  : 0;
-                let newDeaths = currentDay - previousDay;
-                // console.log(date, newDeaths)
-                covidArray.push([date, newDeaths]);
-              }
+      return brownCounty;
+    });
 
-              for (let j = 0; j < covidArray.length; j++) {
-                covidArray[j][0] = new Date(covidArray[j][0]);
+  return Promise.all([ohio, kentucky, indiana]).then((res) => {
+    //  console.log(res[2])
+    let finalCovidObject = {};
+    for (let i in res[0]) {
+      finalCovidObject[i] = res[0][i] + res[1][i] + res[2][i];
+    }
 
-                let one =
-                  covidArray[j - 6] === undefined ? 0 : covidArray[j - 6][1];
-                let two =
-                  covidArray[j - 5] === undefined ? 0 : covidArray[j - 5][1];
-                let three = covidArray[j - 4] ? covidArray[j - 4][1] : 0;
-                let four = covidArray[j - 3] ? covidArray[j - 3][1] : 0;
-                let five = covidArray[j - 2] ? covidArray[j - 2][1] : 0;
-                let six = covidArray[j - 1] ? covidArray[j - 1][1] : 0;
-                let seven = covidArray[j][1];
+    let starterArray = turnObjectToArray(finalCovidObject);
 
-                covidArray[j][2] =
-                  (one + two + three + four + five + six + seven) / 7;
-              }
+    let increases = totalsToIncreases(starterArray);
 
-              covidArray = removeFirstZeros(covidArray);
+    let zerosRemoved = removeFirstZeros(increases);
 
-              return covidArray;
-            });
-        })
-        .catch();
-    })
-    .catch();
+    let finalArray = addSevenDayAverage(zerosRemoved);
+    return finalArray;
+  });
 };
 
+function turnObjectToArray(object) {
+  return Object.entries(object);
+}
+
+function totalsToIncreases(array) {
+  let increaseArray = [];
+  for (let i = 0; i < array.length; i++) {
+    let date = new Date(array[i][0]);
+    let currentDay = array[i][1];
+    let previousDay = array[i - 1] ? array[i - 1][1] : 0;
+    let newCases = currentDay - previousDay;
+    // console.log(date, newCases)
+    increaseArray.push([date, newCases]);
+  }
+
+  return increaseArray;
+}
+
+function addSevenDayAverage(covidArray) {
+  for (let j = 0; j < covidArray.length; j++) {
+    covidArray[j][0] = new Date(covidArray[j][0]);
+
+    let one = covidArray[j - 6] === undefined ? 0 : covidArray[j - 6][1];
+    let two = covidArray[j - 5] === undefined ? 0 : covidArray[j - 5][1];
+    let three = covidArray[j - 4] ? covidArray[j - 4][1] : 0;
+    let four = covidArray[j - 3] ? covidArray[j - 3][1] : 0;
+    let five = covidArray[j - 2] ? covidArray[j - 2][1] : 0;
+    let six = covidArray[j - 1] ? covidArray[j - 1][1] : 0;
+    let seven = covidArray[j][1];
+
+    covidArray[j][2] = (one + two + three + four + five + six + seven) / 7;
+  }
+
+  return covidArray;
+}
+
 function removeFirstZeros(array) {
-  if (array[0][1] == 0) {
+  if (array[0][1] === 0) {
     array.shift();
     return removeFirstZeros(array);
   } else {

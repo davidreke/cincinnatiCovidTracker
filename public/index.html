@@ -2,18 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="./imgs/icons8-virus-64.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Cincinnati Covid Dashboard showing graph and seven day moving average for new cases and deaths in the region."
     />
+
+    <meta 
+      property="og:title"
+      content="Cincinnati Covid Tracker"
+    />
+    <meta 
+      property="og:image"
+      content="https://cincy-covid.netlify.app/imgs/screen.png" 
+    />
+    <meta 
+      property="og:url" 
+      content="https://cincy-covid.netlify.app/"
+    />
+
     
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Vesper+Libre:wght@700&family=Work+Sans&display=swap"
       rel="stylesheet">
+
+    <!-- google analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-09ZZTCYSGW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-09ZZTCYSGW');
+    </script>
 
   <head>
 

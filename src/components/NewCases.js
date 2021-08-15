@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import NewCasesGraph from "./graphComponents/NewCasesGraph";
 import {
   unitedStates,
@@ -25,7 +24,7 @@ export default class NewCases extends Component {
   // https://disease.sh/v3/covid-19/historical/usacounties/ohio?lastdays=all
 
   fetchData(location) {
-    var data = [];
+    
 
     switch (location) {
       case "United States":

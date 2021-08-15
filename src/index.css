@@ -1,8 +1,19 @@
-body {
+#root{
+  width: 100vw;
+}
+
+
+
+@media screen and (min-width: 551px){
+  body {
   background-image: url(./imgs/cincySkyline.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
+  }
+
+  h1{
+      font-size: 4rem;
+  }
 }
 
 .container{
@@ -11,19 +22,29 @@ body {
   
 }
 
-.jumbotron{
-  background-color:#334040 ;
-  text-align: center;
-  margin-bottom: 0;
-  height: 7rem;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 0;
+@media screen and(max-width: 550px){
+  .container{
+    width: 100vw;
+  }
+
+  #header h1{
+      font-size: 6px;
+      
+  }
+
+  #header, #footer{
+      height: auto;
+  }
 }
 
-.jumbotron h1{
+
+
+#header h1{
   color:#D7C7B4;
-  font-size: 4rem;
+}
+
+
+html, body{
+    min-width: 100vw;
+    overflow: auto;
 }

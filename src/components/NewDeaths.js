@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import NewDeathsGraph from "./graphComponents/NewDeathsGraph";
 import {
   unitedStates,
@@ -24,7 +23,6 @@ export default class NewDeaths extends Component {
 
 
   fetchData(location) {
-    var data = [];
 
     switch (location) {
       case "United States":

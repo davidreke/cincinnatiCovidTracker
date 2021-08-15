@@ -1,12 +1,12 @@
 import React from 'react'
-import {Jumbotron} from 'reactstrap'
+
 
 export default function Header() {
     return (
        <div>
-            <Jumbotron>
+            <div id="header">
             <h1>Cincinnati Covid Tracker</h1>
-            </Jumbotron>
+            </div>
        </div>
     )
 }
